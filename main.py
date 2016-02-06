@@ -26,14 +26,6 @@ JINJA_ENVIRONMENT = jinja2.Environment (
     autoescape = True
 )
 
-class User(ndb.Model):
-    name = ndb.StringProperty(required = True)
-    age = ndb.IntegerProperty()
-    likes = ndb.StringProperty(repeated=True)
-    image = ndb.BlobProperty()
-    bio = ndb.TextProperty(indexed = False)
-    gender = ndb.IntegerProperty()
-
 class UserInputHandler(webapp2.RequestHandler):
     def get(self):
         header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
