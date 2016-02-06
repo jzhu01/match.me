@@ -18,6 +18,7 @@ import webapp2
 import logging
 import os
 import jinja2
+from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment (
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -25,12 +26,21 @@ JINJA_ENVIRONMENT = jinja2.Environment (
     autoescape = True
 )
 
+class User(ndb.Model):
+    name = ndb.StringProperty(required = True)
+    age = ndb.IntegerProperty()
+    likes = ndb.StringProperty(repeated=True)
+    image = ndb.BlobProperty()
+    bio = ndb.TextProperty(indexed = False)
+    gender = ndb.IntegerProperty()
+
+
 class UserInputHandler(webapp2.RequestHandler):
     def get(self):
         header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
         header_values = {}
         header_values["page_title"] = "match.me | Account Settings"
-        header_values["link_to_stylesheet"] = "css/userinput.css"
+        header_values["link_to_stylesheet"] = "../css/userinput.css"
         header_values["script_source"] = "http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"
         # header_values["link_to_stylesheet"] = "../css/header.css"
         self.response.write(header_template.render(header_values))
