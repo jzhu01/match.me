@@ -34,7 +34,6 @@ class User(ndb.Model):
     bio = ndb.TextProperty(indexed = False)
     gender = ndb.IntegerProperty()
 
-
 class UserInputHandler(webapp2.RequestHandler):
     def get(self):
         header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
