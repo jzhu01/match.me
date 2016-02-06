@@ -25,19 +25,19 @@ JINJA_ENVIRONMENT = jinja2.Environment (
     autoescape = True
 )
 
-class CreateAccountHandler(webapp2.RequestHandler):
+class UserInputHandler(webapp2.RequestHandler):
     def get(self):
         header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
         header_values = {}
         header_values["page_title"] = "match.me | Account Settings"
-        header_values["link_to_stylesheet"] = "css/create-account.css"
+        header_values["link_to_stylesheet"] = "css/userinput.css"
         header_values["script_source"] = "http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"
         # header_values["link_to_stylesheet"] = "../css/header.css"
         self.response.write(header_template.render(header_values))
 
         # body_template = JINJA_ENVIRONMENT.get_template('templates/create-account.html')
-        create_account_page = open('templates/create-account.html').read()
-        self.response.write(create_account_page)
+        user_input_page = open('templates/userinput.html').read()
+        self.response.write(user_input_page)
 
 
 
@@ -48,5 +48,5 @@ class MainHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/create-account', CreateAccountHandler),
+    ('/userinput', UserInputHandler),
 ], debug=True)
