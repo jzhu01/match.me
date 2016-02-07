@@ -21,6 +21,7 @@ import jinja2
 from google.appengine.ext import ndb
 from models import User
 import re
+import json
 
 JINJA_ENVIRONMENT = jinja2.Environment (
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -34,7 +35,7 @@ class UserInputHandler(webapp2.RequestHandler):
         header_values = {}
         header_values["page_title"] = "match.me | Account Settings"
         header_values["link_to_stylesheet"] = "../css/userinput.css"
-        header_values["script_source"] = "http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"
+        header_values["script_source"] = "../javascript/script.js"
         # header_values["link_to_stylesheet"] = "../css/header.css"
         self.response.write(header_template.render(header_values))
 
@@ -47,24 +48,10 @@ class SaveUserHandler(webapp2.RequestHandler):
     def post(self):
         name = self.request.get('user_name')
         age = int(self.request.get('user_age'))
-        # likes = self.request.get('user_likes')
-        # logging.warning("likes")
-        # logging.warning(likes)
-        if self.request.get('user_img_link'):
-            image_link = self.request.get('user_img_link')
-        else:
-            image_link = "http://www.freelanceme.net/Images/default%20profile%20picture.png"
-
+        image_link = self.request.get('user_img_link')
         bio = self.request.get('user_bio')
         gender = self.request.get('user_gender')
-
-        likes = []
-        for key,value in self.request.POST.items():
-            re_obj = re.search(r'like-(.*)',key)
-            if re_obj and value == "on":
-                likes.append(re_obj.group(0))
-        logging.warning("likesfilled")
-        logging.warning(likes)
+        likes = json.loads(self.request.get('likes'))
 
         if name and age and gender:
             search_user = User.query(User.name == name, User.age == age, User.gender == gender)
@@ -80,13 +67,23 @@ class SaveUserHandler(webapp2.RequestHandler):
                     age = age,
                     image_link = image_link,
                     likes = likes
-                    # likes = "yello"
                 )
                 new_user.put()
         else:
             # This should also be validated in the client before sending the request.
             logging.warning("Ignoring request because it has no name or age or gender")
-        self.redirect('/')
+        # self.redirect('/')
+
+class MatchesHandler(webapp2.RequestHandler):
+    def post(self):
+        header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
+        header_values = {}
+        header_values["page_title"] = "match.me | Matches"
+        self.response.write(header_template.render(header_values))
+
+        user_input_page = open('templates/matches.html').read()
+        self.response.write(user_input_page)
+
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -97,4 +94,5 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/userinput', UserInputHandler),
     ('/saveuserinput', SaveUserHandler),
+    ('/matches', MatchesHandler),
 ], debug=True)
