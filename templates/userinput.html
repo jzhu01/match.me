@@ -2,8 +2,8 @@
   <section>
       <!-- <form action="/saveuserinput" method="post"> -->
       <form id="user_form" enctype="multipart/form-data">
-        <div>
-          <h1 class="mdl-card__title-text">Looking for a friend? ... You're in the right place :)</h1>
+        <div class="user_form">
+          <h1 class="mdl-card__title-text">Looking for a friend? ...You're in the right place :)</h1>
             <div class="mdl-textfield mdl-js-textfield">
                   <input class="mdl-textfield__input" type="text" id="user_name" name="user_name" placeholder="Name...">
             </div>
@@ -13,7 +13,7 @@
           </div>
           <br>
           <!-- <input id="interests" type="text" placeholder="What are your interests?"> -->
-          <p> So what are your interests? Select as many as you want! (use ctrl or cmd) </p>
+          <p class="mdl-checkbox__label">So what are your interests? Select as many as you want! (use ctrl or cmd)</p>
           <select name="user_likes" multiple>
             <option class="user_like" value="Running" id="like-Running" name="like-Running">Running</option>
             <option class="user_like" value="Skiing" id="like-Skiing" name="like-Skiing">Skiing</option>
@@ -31,33 +31,23 @@
             <input class="mdl-textfield__input" type="text" id="user_img_link" name="user_img_link" placeholder="Link to an image of you here...">
           </div>
           <br>
-          <p> Give us a little info about youself! </p>
+          <!-- <p> Give us a little info about youself! </p> -->
+          <p class="mdl-checkbox__label">Give us a little info about yourself!</p>
           <div class="mdl-textfield mdl-js-textfield">
             <textarea class="mdl-textfield__input" type="text" rows= "6" id="user_bio" name="user_bio" placeholder="Some ideas to get you started: Favorite animals, songs, quotes..." ></textarea>
           </div>
           <br>
-
-          <button id="gender-btn" class="mdl-button mdl-js-button mdl-button--raised">Gender  </button>
-
-          <!-- <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-              for="gender-btn">
-            <li class="mdl-menu__item">Some Action</li>
-            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider">Another Action</li>
-            <li disabled class="mdl-menu__item">Disabled Action</li>
-            <li class="mdl-menu__item">Yet Another Action</li>
-          </ul> -->
-
-          <select class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-              for="gender-btn" name="user_gender">
-            <option class="mdl-menu__item user_gender" value="Male">Male</option>
-            <option class="mdl-menu__item user_gender" value="Female">Female</option>
-            <option class="mdl-menu__item user_gender" value="Other">Other</option>
+          <select name="user_gender">
+            <option class="user_gender" value="Male">Male</option>
+            <option class="user_gender" value="Female">Female</option>
+            <option class="user_gender" value="Other">Other</option>
           </select>
           <br>
           <br>
           <div class="mdl-textfield mdl-js-textfield">
             <input class="mdl-textfield__input" type="text" id="user_zip_code" name="user_zip_code" placeholder="Enter your zip code...">
           </div>
+          <br>
           <button class="mdl-button mdl-js-button mdl-button--raised" id="btn-submit">Submit</button>
         </div>
       </form>
