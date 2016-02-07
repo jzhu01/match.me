@@ -59,7 +59,6 @@ class SaveUserHandler(webapp2.RequestHandler):
         gender = self.request.get('user_gender')
 
         likes = []
-        # Let's find all the attributes whose key looks like "amenities-.*"
         for key,value in self.request.POST.items():
             re_obj = re.search(r'^like-(.*)',key)
             if re_obj and value == "on":
