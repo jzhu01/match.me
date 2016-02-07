@@ -50,7 +50,11 @@ class SaveUserHandler(webapp2.RequestHandler):
         # likes = self.request.get('user_likes')
         # logging.warning("likes")
         # logging.warning(likes)
-        image_link = self.request.get('user_img_link')
+        if self.request.get('user_img_link'):
+            image_link = self.request.get('user_img_link')
+        else:
+            image_link = "http://www.freelanceme.net/Images/default%20profile%20picture.png"
+
         bio = self.request.get('user_bio')
         gender = self.request.get('user_gender')
 
@@ -60,7 +64,7 @@ class SaveUserHandler(webapp2.RequestHandler):
             re_obj = re.search(r'^like-(.*)',key)
             if re_obj and value == "on":
                 likes.append(re_obj.group(0))
-
+        logging.warning("likesfilled")
         logging.warning(likes)
 
         if name and age and gender:
