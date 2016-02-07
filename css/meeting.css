@@ -1,0 +1,20 @@
+.navbar {
+  background-color: #00cc66;
+  padding-bottom:5%;
+}
+
+
+.add-btn {
+  float: right;
+  background-color: #ccffcc;
+  margin: 0.5em;
+}
+
+a {
+  color: black;
+}
+#back-to-matches {
+  float: left;
+  background-color: #ccffcc;
+  margin: 1em;
+}

@@ -1,7 +1,7 @@
 <body>
-<h4>Time to meet new people!</h4>
+<h4>Here are some spots worth checking out ;)</h4>
   <div class="matches">
-  {% for friend in contentArray %}
+  <!-- {% for friend in contentArray %} -->
   <section id="groupsinfo">
     <!-- Wide card with share menu button -->
     <style>
@@ -11,7 +11,7 @@
     .demo-card-wide > .mdl-card__title {
       color: #fff;
       height: 176px;
-      background: url('../images/friendship.jpg') center / cover;
+      background: url('../images/restaurant.jpg') center / cover;
     }
     .demo-card-wide > .mdl-card__menu {
       color: #fff;
@@ -21,34 +21,23 @@
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
 
       <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text friend_name">{{ friend.friendname }}</h2>
+          <!-- <h2 class="mdl-card__title-text friend_name">{{ friend.friendname }}</h2> -->
+          <h2 class="mdl-card__title-text friend_name">Osaka</h2>
       </div>
       <div class="mdl-card__supporting-text bio">
-        {{friend.friendage}}
-        <br>
-        {{ friend.friendbio }}
+        <!-- {{friend.friendage}} -->
+        Restaurant
       </div>
       <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/message">
-          Message
-        </a>
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/meeting">
-          Meet
+          Details
         </a>
       </div>
-
-      <div class="mdl-card__menu similar_activities">
-        Likes...
-        {% for like in friend.friendlikes %}
-          <li>{{like}}</li>
-        {% endfor %}
-      </div>
-
     </div>
     <br>
     <br>
   </section>
-  {% endfor %}
+  <!-- {% endfor %} -->
 </div>
 </body>
 </html>
