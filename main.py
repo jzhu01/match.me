@@ -110,6 +110,10 @@ class MessageHandler(webapp2.RequestHandler):
         # header_values["script_source"] = ".."
         self.response.write(header_template.render(header_values))
 
+        user_input_page = open('templates/message.html').read()
+        self.response.write(user_input_page)
+
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write('Hello world!')
