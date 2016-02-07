@@ -86,13 +86,12 @@ class SaveUserHandler(webapp2.RequestHandler):
             logging.warning(friend)
             FRIEND_ENTRIES.append({'friendname': friend.name, 'friendage': friend.age, 'friendbio': friend.bio, 'friendgender': friend.gender, "friendlikes":friend.likes})
 
-
-
 class MatchesHandler(webapp2.RequestHandler):
     def get(self):
         header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
         header_values = {}
         header_values["page_title"] = "match.me | Matches"
+        header_values["link_to_stylesheet"] = "../css/matches.css"
         self.response.write(header_template.render(header_values))
 
         logging.info(FRIEND_ENTRIES)
@@ -102,6 +101,14 @@ class MatchesHandler(webapp2.RequestHandler):
         }
         self.response.write(template.render(template_values))
 
+class MessageHandler(webapp2.RequestHandler):
+    def get(self):
+        header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
+        header_values = {}
+        header_values["page_title"] = "match.me | Message"
+        header_values["link_to_stylesheet"] = "../css/message.css"
+        # header_values["script_source"] = ".."
+        self.response.write(header_template.render(header_values))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -112,4 +119,5 @@ app = webapp2.WSGIApplication([
     ('/userinput', UserInputHandler),
     ('/saveuserinput', SaveUserHandler),
     ('/matches', MatchesHandler),
+    ('/message', MessageHandler),
 ], debug=True)

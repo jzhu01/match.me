@@ -1,8 +1,8 @@
-/*#user_name {
-  padding: 1em;
-}*/
+h4 {
+  color: white;
+}
 
-.user_form {
+.matches {
   margin: auto;
   width: 60%;
   padding: 5%;
