@@ -29,6 +29,8 @@ JINJA_ENVIRONMENT = jinja2.Environment (
     autoescape = True
 )
 
+FRIEND_ENTRIES = []
+
 class UserInputHandler(webapp2.RequestHandler):
     def get(self):
         header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
@@ -52,6 +54,7 @@ class SaveUserHandler(webapp2.RequestHandler):
         bio = self.request.get('user_bio')
         gender = self.request.get('user_gender')
         likes = json.loads(self.request.get('likes'))
+        zipcode = self.request.get('user_zip')
 
         if name and age and gender:
             search_user = User.query(User.name == name, User.age == age, User.gender == gender)
@@ -75,6 +78,15 @@ class SaveUserHandler(webapp2.RequestHandler):
             logging.warning("Ignoring request because it has no name or age or gender")
         # self.redirect('/')
 
+        # Here comes the comparison with interests
+        friend_suggestions = User.query(User.likes.IN(likes))
+
+        for friend in friend_suggestions:
+            logging.warning(friend)
+            FRIEND_ENTRIES.append({'friendname': friend.name})
+
+
+
 class MatchesHandler(webapp2.RequestHandler):
     def get(self):
         header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
@@ -82,8 +94,13 @@ class MatchesHandler(webapp2.RequestHandler):
         header_values["page_title"] = "match.me | Matches"
         self.response.write(header_template.render(header_values))
 
-        user_input_page = open('templates/matches.html').read()
-        self.response.write(user_input_page)
+        logging.info(FRIEND_ENTRIES)
+        template = JINJA_ENVIRONMENT.get_template('templates/matches.html')
+        template_values = {
+            "contentArray" : FRIEND_ENTRIES,
+        }
+        self.response.write(template.render(template_values))
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
