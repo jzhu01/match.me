@@ -60,7 +60,7 @@ class SaveUserHandler(webapp2.RequestHandler):
 
         likes = []
         for key,value in self.request.POST.items():
-            re_obj = re.search(r'^like-(.*)',key)
+            re_obj = re.search(r'like-(.*)',key)
             if re_obj and value == "on":
                 likes.append(re_obj.group(0))
         logging.warning("likesfilled")

@@ -2,7 +2,7 @@
 <html>
 <body>
   <section>
-      <form action="/saveuserinput" method="post">
+      <!-- <form action="/saveuserinput" method="post"> -->
         <div>
           <input id="user_name" type="text" placeholder="Name.." name="user_name">
           <br>
@@ -12,16 +12,16 @@
           <!-- <input id="interests" type="text" placeholder="What are your interests?"> -->
           <p> So what are your interests? Select as many as you want! (use ctrl or cmd) </p>
           <select name="user_likes" multiple>
-            <option value="Running" name="like-Running">Running</option>
-            <option value="Skiing" name="like-Skiing">Skiing</option>
-            <option value="Backpacking" name="like-Backpacking">Backpacking</option>
-            <option value="Lived Abroad" name="like-Lived Abroad">Lived Abroad</option>
-            <option value="Foreign Language" name="like-Foreign Language">Foreign Language</option>
-            <option value="Water sports" name="like-Water sports">Water sports</option>
-            <option value="Vegetarian" name="like-Vegetarian">Vegetarian</option>
-            <option value="Coffee addict" name="like-Coffee addict">Coffee addict</option>
-            <option value="Theater" name="like-Theater">Theater</option>
-            <option value="Sushi" name="like-Sushi">Sushi</option>
+            <option value="Running" id="like-Running" name="like-Running">Running</option>
+            <option value="Skiing" id="like-Skiing" name="like-Skiing">Skiing</option>
+            <option value="Backpacking" id="like-Backpacking" name="like-Backpacking">Backpacking</option>
+            <option value="Lived Abroad" id="like-Lived Abroad" name="like-Lived Abroad">Lived Abroad</option>
+            <option value="Foreign Language" id="like-Foreign Language" name="like-Foreign Language">Foreign Language</option>
+            <option value="Water sports" id="like-Water sports" name="like-Water sports">Water sports</option>
+            <option value="Vegetarian" id="like-Vegetarian" name="like-Vegetarian">Vegetarian</option>
+            <option value="Coffee addict" id="like-Coffee addict" name="like-Coffee addict">Coffee addict</option>
+            <option value="Theater" id="like-Theater" name="like-Theater">Theater</option>
+            <option value="Sushi" id="like-Sushi" name="like-Sushi">Sushi</option>
           </select>
           <br>
           <br>
@@ -39,8 +39,9 @@
           <br>
           <br>
         </div>
-        <input type="submit">
-      </form>
+        <!-- <input type="submit"> -->
+        <button id="btn-submit">Submit</button>
+      <!-- </form> -->
   </section>
 </body>
 </html>
