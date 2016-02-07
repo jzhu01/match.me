@@ -128,7 +128,15 @@ class MeetingHandler(webapp2.RequestHandler):
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
+        header_values = {}
+        header_values["page_title"] = "Welcome to match.me"
+        # header_values["link_to_stylesheet"] = "../css/meeting.css"
+        self.response.write(header_template.render(header_values))
+
+        mainpage = open('templates/mainpage.html').read()
+        self.response.write(mainpage)
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
