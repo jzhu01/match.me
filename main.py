@@ -110,8 +110,20 @@ class MessageHandler(webapp2.RequestHandler):
         # header_values["script_source"] = ".."
         self.response.write(header_template.render(header_values))
 
-        user_input_page = open('templates/message.html').read()
-        self.response.write(user_input_page)
+        message_page = open('templates/message.html').read()
+        self.response.write(message_page)
+
+class MeetingHandler(webapp2.RequestHandler):
+    def get(self):
+        header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
+        header_values = {}
+        header_values["page_title"] = "match.me | Meet"
+        header_values["link_to_stylesheet"] = "../css/meeting.css"
+        # header_values["script_source"] = ".."
+        self.response.write(header_template.render(header_values))
+
+        meeting_page = open('templates/meeting.html').read()
+        self.response.write(meeting_page)
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -124,4 +136,5 @@ app = webapp2.WSGIApplication([
     ('/saveuserinput', SaveUserHandler),
     ('/matches', MatchesHandler),
     ('/message', MessageHandler),
+    ('/meeting', MeetingHandler),
 ], debug=True)
