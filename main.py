@@ -19,6 +19,8 @@ import logging
 import os
 import jinja2
 from google.appengine.ext import ndb
+from models import User
+import re
 
 JINJA_ENVIRONMENT = jinja2.Environment (
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -41,6 +43,47 @@ class UserInputHandler(webapp2.RequestHandler):
         self.response.write(user_input_page)
 
 
+class SaveUserHandler(webapp2.RequestHandler):
+    def post(self):
+        name = self.request.get('user_name')
+        age = int(self.request.get('user_age'))
+        # likes = self.request.get('user_likes')
+        # logging.warning("likes")
+        # logging.warning(likes)
+        image_link = self.request.get('user_img_link')
+        bio = self.request.get('user_bio')
+        gender = self.request.get('user_gender')
+
+        likes = []
+        # Let's find all the attributes whose key looks like "amenities-.*"
+        for key,value in self.request.POST.items():
+            re_obj = re.search(r'^like-(.*)',key)
+            if re_obj and value == "on":
+                likes.append(re_obj.group(0))
+
+        logging.warning(likes)
+
+        if name and age and gender:
+            search_user = User.query(User.name == name, User.age == age, User.gender == gender)
+            results = search_user.fetch()
+            logging.info(results)
+            if results:
+                logging.warning("We have already a user named %s , age %s , gender %s . Skipping." % (name, age, gender))
+            else:
+                new_user = User(
+                    name = name,
+                    gender = gender,
+                    bio = bio,
+                    age = age,
+                    image_link = image_link,
+                    likes = likes
+                    # likes = "yello"
+                )
+                new_user.put()
+        else:
+            # This should also be validated in the client before sending the request.
+            logging.warning("Ignoring request because it has no name or age or gender")
+        self.redirect('/')
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -50,4 +93,5 @@ class MainHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/userinput', UserInputHandler),
+    ('/saveuserinput', SaveUserHandler),
 ], debug=True)
