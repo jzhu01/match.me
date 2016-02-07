@@ -31,13 +31,13 @@ JINJA_ENVIRONMENT = jinja2.Environment (
 
 class UserInputHandler(webapp2.RequestHandler):
     def get(self):
-        # header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
-        # header_values = {}
-        # header_values["page_title"] = "match.me | Account Settings"
-        # header_values["link_to_stylesheet"] = "../css/userinput.css"
-        # header_values["script_source"] = "../javascript/script.js"
-        # # header_values["link_to_stylesheet"] = "../css/header.css"
-        # self.response.write(header_template.render(header_values))
+        header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
+        header_values = {}
+        header_values["page_title"] = "match.me | Account Settings"
+        header_values["link_to_stylesheet"] = "../css/userinput.css"
+        header_values["script_source"] = "../javascript/script.js"
+
+        self.response.write(header_template.render(header_values))
 
         # body_template = JINJA_ENVIRONMENT.get_template('templates/create-account.html')
         user_input_page = open('templates/userinput.html').read()
@@ -66,7 +66,8 @@ class SaveUserHandler(webapp2.RequestHandler):
                     bio = bio,
                     age = age,
                     image_link = image_link,
-                    likes = likes
+                    likes = likes,
+                    zipcode = zipcode
                 )
                 new_user.put()
         else:
@@ -83,8 +84,6 @@ class MatchesHandler(webapp2.RequestHandler):
 
         user_input_page = open('templates/matches.html').read()
         self.response.write(user_input_page)
-
-
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):

@@ -13,6 +13,7 @@ $(document).ready(function () {
       var user_img_link = $("#user_img_link").val();
     }
     var user_gender;
+    var user_zip = $("#user_zip_code").val();
 
 
     $(".user_gender").each( function () {
@@ -40,6 +41,7 @@ $(document).ready(function () {
                     user_img_link : user_img_link,
                     user_bio: user_bio,
                     user_gender: user_gender,
+                    user_zip : user_zip,
                     likes : JSON.stringify(likes) }
     }).done( function(data) {
       console.log("AJAX finished.");
