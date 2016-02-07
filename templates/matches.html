@@ -31,9 +31,13 @@
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
           Message
         </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Meet
+        </a>
       </div>
+
       <div class="mdl-card__menu similar_activities">
-        You share an interest in...
+        Likes...
         {% for like in friend.friendlikes %}
           <li>{{like}}</li>
         {% endfor %}
