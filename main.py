@@ -75,7 +75,7 @@ class SaveUserHandler(webapp2.RequestHandler):
         # self.redirect('/')
 
 class MatchesHandler(webapp2.RequestHandler):
-    def post(self):
+    def get(self):
         header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
         header_values = {}
         header_values["page_title"] = "match.me | Matches"

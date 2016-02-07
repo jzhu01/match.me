@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  $("#btn--submit").click(function (e) {
+  $("#btn-submit").click(function (e) {
     e.preventDefault();
     // get solo hacker's list of skills
     var likes = [];
@@ -21,7 +21,7 @@ $(document).ready(function () {
       }
     });
 
-    $(".user-like").each( function() {
+    $(".user_like").each( function() {
       if ($(this).is(":selected")) {
         var interest = $(this).val();
         likes.push(interest);
