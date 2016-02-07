@@ -131,7 +131,7 @@ class MainHandler(webapp2.RequestHandler):
         header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
         header_values = {}
         header_values["page_title"] = "Welcome to match.me"
-        # header_values["link_to_stylesheet"] = "../css/meeting.css"
+        header_values["link_to_stylesheet"] = "../css/mainpage.css"
         self.response.write(header_template.render(header_values))
 
         mainpage = open('templates/mainpage.html').read()
