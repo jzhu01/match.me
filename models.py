@@ -8,6 +8,7 @@ class User(ndb.Model):
     image_link = ndb.StringProperty()
     bio = ndb.TextProperty(indexed = False)
     gender = ndb.StringProperty(required = True)
+    zipcode = ndb.StringProperty()
 
 class Activity(ndb.Model):
     name = ndb.StringProperty(required=True)
