@@ -84,7 +84,7 @@ class SaveUserHandler(webapp2.RequestHandler):
 
         for friend in friend_suggestions:
             logging.warning(friend)
-            FRIEND_ENTRIES.append({'friendname': friend.name, 'friendage': friend.age, 'friendbio': friend.bio, 'friendgender': friend.gender, "friendlikes":friend.likes})
+            FRIEND_ENTRIES.append({'friendname': friend.name, 'friendage': friend.age, 'friendbio': friend.bio, 'friendgender': friend.gender, "friendlikes":friend.likes,'friendimg': friend.image_link})
 
 class MatchesHandler(webapp2.RequestHandler):
     def get(self):
@@ -128,7 +128,7 @@ class MeetingHandler(webapp2.RequestHandler):
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        header_template = JINJA_ENVIRONMENT.get_template('templates/header.html')
+        header_template = JINJA_ENVIRONMENT.get_template('templates/mainpage_header.html')
         header_values = {}
         header_values["page_title"] = "Welcome to match.me"
         header_values["link_to_stylesheet"] = "../css/mainpage.css"
