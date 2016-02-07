@@ -80,10 +80,11 @@ class SaveUserHandler(webapp2.RequestHandler):
 
         # Here comes the comparison with interests
         friend_suggestions = User.query(User.likes.IN(likes))
+        # get the specific likes that they share?
 
         for friend in friend_suggestions:
             logging.warning(friend)
-            FRIEND_ENTRIES.append({'friendname': friend.name})
+            FRIEND_ENTRIES.append({'friendname': friend.name, 'friendage': friend.age, 'friendbio': friend.bio, 'friendgender': friend.gender, "friendlikes":friend.likes})
 
 
 

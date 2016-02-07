@@ -1,12 +1,16 @@
 <body>
   <section>
       <!-- <form action="/saveuserinput" method="post"> -->
-      <form id="user_form">
+      <form id="user_form" enctype="multipart/form-data">
         <div>
-          <input id="user_name" type="text" placeholder="Name.." name="user_name">
+          <h1 class="mdl-card__title-text">Looking for a friend? ... You're in the right place :)</h1>
+            <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" id="user_name" name="user_name" placeholder="Name...">
+            </div>
           <br>
-          <br>
-          <input id="user_age" type="text" placeholder="Age" name="user_age">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="user_age" name="user_age" placeholder="Age...">
+          </div>
           <br>
           <!-- <input id="interests" type="text" placeholder="What are your interests?"> -->
           <p> So what are your interests? Select as many as you want! (use ctrl or cmd) </p>
@@ -23,24 +27,39 @@
             <option class="user_like" value="Sushi" id="like-Sushi" name="like-Sushi">Sushi</option>
           </select>
           <br>
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="user_img_link" name="user_img_link" placeholder="Link to an image of you here...">
+          </div>
           <br>
-          <input id="user_img_link" type="text" name="user_img_link" placeholder="Link to an image of you here...">
           <p> Give us a little info about youself! </p>
-          <!-- <input id="user_bio" type="textarea" placeholder="Some ideas to get you started: Favorite animals, songs, quotes..." name="user_bio"> -->
-          <textarea id="user_bio" name="user_bio" placeholder="Some ideas to get you started: Favorite animals, songs, quotes..."> </textarea>
+          <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" rows= "6" id="user_bio" name="user_bio" placeholder="Some ideas to get you started: Favorite animals, songs, quotes..." ></textarea>
+          </div>
           <br>
-          <br>
-          <select name="user_gender">
-            <option class="user_gender" value="Male">Male</option>
-            <option class="user_gender" value="Female">Female</option>
-            <option class="user_gender" value="Other">Other</option>
+
+          <button id="gender-btn" class="mdl-button mdl-js-button mdl-button--raised">Gender  </button>
+
+          <!-- <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+              for="gender-btn">
+            <li class="mdl-menu__item">Some Action</li>
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider">Another Action</li>
+            <li disabled class="mdl-menu__item">Disabled Action</li>
+            <li class="mdl-menu__item">Yet Another Action</li>
+          </ul> -->
+
+          <select class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+              for="gender-btn" name="user_gender">
+            <option class="mdl-menu__item user_gender" value="Male">Male</option>
+            <option class="mdl-menu__item user_gender" value="Female">Female</option>
+            <option class="mdl-menu__item user_gender" value="Other">Other</option>
           </select>
           <br>
           <br>
-          <input id="user_zip_code" type="text" name="user_zip_code" placeholder="Please enter your zip code...">
-          <button id="btn-submit">Submit</button>
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="user_zip_code" name="user_zip_code" placeholder="Enter your zip code...">
+          </div>
+          <button class="mdl-button mdl-js-button mdl-button--raised" id="btn-submit">Submit</button>
         </div>
-        <!-- <input type="submit"> -->
       </form>
   </section>
 </body>

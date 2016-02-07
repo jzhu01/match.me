@@ -1,3 +1,4 @@
+<body>
 <h4>Time to meet new people!</h4>
   {% for friend in contentArray %}
   <section id="groupsinfo">
@@ -18,14 +19,24 @@
 
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
 
-          <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text" class="username">{{ friend.friendname }}</h2>
-          </div>
-
+      <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text friend_name">{{ friend.friendname }}</h2>
+      </div>
+      <div class="mdl-card__supporting-text bio">
+        {{friend.friendage}}
+        <br>
+        {{ friend.friendbio }}
+      </div>
       <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
           Message
         </a>
+      </div>
+      <div class="mdl-card__menu similar_activities">
+        You share an interest in...
+        {% for like in friend.friendlikes %}
+          <li>{{like}}</li>
+        {% endfor %}
       </div>
 
     </div>
