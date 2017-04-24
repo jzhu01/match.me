@@ -13,7 +13,3 @@ class User(ndb.Model):
 class Activity(ndb.Model):
     name = ndb.StringProperty(required=True)
     user = ndb.KeyProperty(repeated = True)
-
-#
-# class Group(ndb.Model):
-#
